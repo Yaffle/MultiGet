@@ -12,6 +12,8 @@ $mget->request('http://ya.ru')
   // so you can process data before all other downloads ends
   // also you can add new requests from here
 });
+$mget->go();// waits for downloads and executes callbacks
+// at this point all work done...
 ```
 
 Example
