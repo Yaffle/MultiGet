@@ -73,12 +73,7 @@ class MultiGet {
         if (count($this->requests) < $this->maxRequests) {
             $multiHandle = curl_multi_init();
             $handle = curl_init();
-            if ($this->curlOptions) {
-                curl_setopt_array($handle, $this->curlOptions);
-            }
-            if ($x->curlOptions) {
-                curl_setopt_array($handle, $x->curlOptions);
-            }
+           
             curl_setopt($handle, CURLOPT_URL, $x->url);
             curl_setopt($handle, CURLOPT_RETURNTRANSFER, TRUE);
             if ($x->postData !== null) {
@@ -88,6 +83,13 @@ class MultiGet {
 
             curl_setopt($handle, CURLOPT_HEADER, TRUE);
             curl_setopt($handle, CURLOPT_TIMEOUT, 45);//!!!?
+            
+            if ($this->curlOptions) {
+                curl_setopt_array($handle, $this->curlOptions);
+            }
+            if ($x->curlOptions) {
+                curl_setopt_array($handle, $x->curlOptions);
+            }
 
             curl_multi_add_handle($multiHandle, $handle);
 
